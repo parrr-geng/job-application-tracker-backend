@@ -9,14 +9,15 @@ const jobSchema = new Schema(
             type: String,
             enum: ["Full-time", "Part-time", "Contract", "Internship"]
         },
-        recruiter: {
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        },
+        recruiter: String,
         description: String,
         status: {
             type: String,
             enum:["wishlist", "applied"]
+        },
+        createdBy: {
+            type: Schema.Types.ObjectId,
+            rel: "User"
         }
 
     },

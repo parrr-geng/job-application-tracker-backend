@@ -10,7 +10,7 @@ const userSchema = new Schema(
     experience: String,
     education: String,
     certifications: String,
-    languages: String,
+    languages: [String],
     skills: String,
     email: {
       type: String,
