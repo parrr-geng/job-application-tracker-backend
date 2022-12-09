@@ -31,4 +31,24 @@ router.get("/jobs/:jobId", (req, res, next)=>{
     .catch(err => res.json(err));
 })
 
+//Edit - edit a specific job post that is created by this logged-in user
+router.put("/jobs/:jobId/edit", (req, res, next)=>{
+    const { jobId } = req.params;
+    
+    Job.findByIdAndUpdate(jobId, req.body)
+    .then(foundJob => res.json(foundJob))
+    .catch(err => res.json(err));
+})
+
+//DELETE - delete a job post that is created by the logged-in user
+router.delete("/jobs/:jobId/delete", (req, res, next)=>{
+    const { jobId } = req.params;
+
+    Job.findByIdAndRemove( jobId )
+    .then(()=>res.json(
+        {message: "Job removed successfully."}
+    ))
+    .catch(err => res.json(err));
+})
+
 module.exports = router;
