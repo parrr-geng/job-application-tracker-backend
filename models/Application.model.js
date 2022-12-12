@@ -2,11 +2,23 @@ const {Schema, model} = require("mongoose");
 
 const applicationSchema = new Schema(
     {
-    status:{
-        type: String,
-        enum: ["applied", "interviewed", "rejected", "accepted"]
-    },
-    lastContacted: Date
+        job:{
+            type: Schema.Types.ObjectId,
+            rel: "Job",
+            required: true
+        },
+        jobTitle: String,
+        status:{
+            type: String,
+            enum: ["Wishlist", "Applied", "In Process", "Rejected", "Offer"]
+        },
+        coverLetter: String,
+        notes: String,
+        dateApplied: String,
+        applicant:{
+            type:Schema.Types.ObjectId,
+            rel: "User"
+        },
     }, 
     {
         timestamps: true

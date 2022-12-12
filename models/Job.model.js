@@ -19,7 +19,6 @@ const jobSchema = new Schema(
             type: Schema.Types.ObjectId,
             rel: "User"
         }
-
     },
     {
         timestamps: true,

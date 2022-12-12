@@ -1,14 +1,7 @@
 const router = require("express").Router();
 const Job = require("../models/Job.model");
+const Application = require("../models/Application.model");
 
-//GET - view the logged-in user's job posts
-router.get("/:userId/jobs", (req, res, next)=>{
-    const {userId} = req.params;
-
-    Job.find({createdBy: userId})
-    .then(response => res.json(response))
-    .catch(error => res.json(error));
-});
 
 //POST - create a new job post by the logged-in user
 router.post("/:userId/job/create", (req, res, next)=>{
@@ -49,6 +42,18 @@ router.delete("/jobs/:jobId/delete", (req, res, next)=>{
         {message: "Job removed successfully."}
     ))
     .catch(err => res.json(err));
-})
+});
+
+
+//GET - view the logged-in user's job posts
+router.get("/:userId/jobs", (req, res, next)=>{
+    const {userId} = req.params;
+
+    Job.find({createdBy: userId})
+    .then(response => res.json(response))
+    .catch(error => res.json(error));
+});
+
+
 
 module.exports = router;
