@@ -4,6 +4,7 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
   { 
     name: String,
+    profileImageURL: String,
     location: String,
     about: String,
     website: String,
