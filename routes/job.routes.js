@@ -7,7 +7,7 @@ const Application = require("../models/Application.model");
 router.post("/:userId/job/create", (req, res, next)=>{
     const { userId } = req.params;
 
-    const {title, company, location, jobType, recruiter, description} = req.body;
+    const {title, company, location, jobType, recruiter, description, public} = req.body;
 
     Job.create({title, company, location, jobType, recruiter, description, createdBy: userId})
     .then(createdJob => res.json(createdJob))
@@ -54,6 +54,12 @@ router.get("/:userId/jobs", (req, res, next)=>{
     .catch(error => res.json(error));
 });
 
+//GET - view all the job posts created on this platform
+router.get("/jobs", (req, res, next)=>{
+    Job.find()
+    .then(response => res.json(response))
+    .catch(error => res.json(error));
+})
 
 
 module.exports = router;

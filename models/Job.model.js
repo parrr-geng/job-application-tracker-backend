@@ -11,9 +11,10 @@ const jobSchema = new Schema(
         },
         recruiter: String,
         description: String,
-        status: {
-            type: String,
-            enum:["wishlist", "applied"]
+        jobUrl: String,
+        public: {
+            type: Boolean,
+            default: false
         },
         createdBy: {
             type: Schema.Types.ObjectId,
