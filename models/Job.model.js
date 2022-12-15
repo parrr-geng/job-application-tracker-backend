@@ -12,14 +12,15 @@ const jobSchema = new Schema(
         recruiter: String,
         description: String,
         jobUrl: String,
-        public: {
+        publicVisibility: {
             type: Boolean,
             default: false
         },
         createdBy: {
             type: Schema.Types.ObjectId,
             rel: "User"
-        }
+        },
+ 
     },
     {
         timestamps: true,

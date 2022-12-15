@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Job = require("../models/Job.model");
+const User = require("../models/User.model");
 const Application = require("../models/Application.model");
 
 
@@ -56,6 +57,7 @@ router.get("/:userId/jobs", (req, res, next)=>{
 
 //GET - view all the job posts created on this platform
 router.get("/jobs", (req, res, next)=>{
+
     Job.find()
     .then(response => res.json(response))
     .catch(error => res.json(error));

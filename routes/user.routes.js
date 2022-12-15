@@ -37,19 +37,25 @@ router.put('/profile/:userId/edit', (req, res, next) => {
       .catch(error => res.json(error));
 });
 
+router.get("/users", (req, res, next)=>{
+  User.find()
+  .then(allUsers => res.json(allUsers))
+  .catch(error => res.json(error));
+})
+
 // Post  to post the feedback to the website hoster's email address
 router.post("/contact", (req, res, next) => {
   const transporter = nodeMailer.createTransport({
-      service: "Gmail",
+      service: "Hotmail",
       auth: {
-          user:"parrr.geng@gmail.com",
-          pass:"",
+          user:"jobapplicationtracker@outlook.com",
+          pass:"JAT202212",
       },
   })
 
   const mailOptions = {
-      from: "parrr.geng@gmail.com",
-      to: "parrr.geng@gmail.com",
+      from: "jobapplicationtracker@outlook.com",
+      to: "jobapplicationtracker@outlook.com",
       subject: req.body.subject,
       text: `You got a message from
       Email: ${req.body.email}
@@ -57,11 +63,16 @@ router.post("/contact", (req, res, next) => {
   };
 
   const mailResponse = {
-      from: "parrr.geng@gmail.com",
+      from: "jobapplicationtracker@outlook.com",
       to: req.body.email,
       subject: "Email sent confirmation",
       text: `We have received your email and you'll be contacted shortly!\n${req.body.message}`
   }
+
+  transporter.verify(function(error, success){
+    if(error){console.log(error)}
+    else{console.log("Server is ready to take our message")};
+  })
 
   transporter.sendMail(mailOptions, (error, info) => {
       if (error) { 
